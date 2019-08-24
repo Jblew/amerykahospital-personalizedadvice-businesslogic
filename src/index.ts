@@ -10,3 +10,4 @@ export { RoleKey } from "./roles/RoleKey";
 export { RoleStructure } from "./roles/RoleStructure";
 
 export { AddAdviceFunction } from "./functions/AddAdviceFunction";
+export { SendSMSFunction } from "./functions/SendSMSFunction";
