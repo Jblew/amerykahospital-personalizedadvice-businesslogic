@@ -8,3 +8,5 @@ export { SentSMSRepository } from "./model/sentsms/SentSMSRepository";
 
 export { RoleKey } from "./roles/RoleKey";
 export { RoleStructure } from "./roles/RoleStructure";
+
+export { AddAdviceFunction } from "./functions/AddAdviceFunction";
