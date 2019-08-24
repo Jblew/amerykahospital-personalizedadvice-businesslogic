@@ -11,3 +11,4 @@ export { RoleStructure } from "./roles/RoleStructure";
 
 export { AddAdviceFunction } from "./functions/AddAdviceFunction";
 export { SendSMSFunction } from "./functions/SendSMSFunction";
+export { ImportAdviceToUserFunction } from "./functions/ImportAdviceToUserFunction";
