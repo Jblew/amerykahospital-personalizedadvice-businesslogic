@@ -26,4 +26,6 @@ export {
     ImportAdviceToUserFunctionAbstractHandler,
 } from "./functions/import_advice/ImportAdviceToUserFunctionAbstractHandler";
 
-export { SendSMSFunction } from "./functions/SendSMSFunction";
+export { SendSMSFunction } from "./functions/send_sms/SendSMSFunction";
+export { SendSMSFunctionAbstractHandler } from "./functions/send_sms/SendSMSFunctionAbstractHandler";
+export { SMSConfig } from "./functions/send_sms/SMSConfig";

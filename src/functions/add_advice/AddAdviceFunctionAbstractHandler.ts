@@ -16,7 +16,7 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
         const pendingAdvice = this.inputToPendingAdvice(input);
         const id = await this.obtainUniqueId();
         const advice = this.pendingAdviceToAdvice(pendingAdvice, id);
-        await this.addAdvice(advice);
+        await this.getAdviceRepository().addAdvice(advice);
         return {
             log: "",
             adviceId: id,
@@ -44,9 +44,5 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
     private async obtainUniqueId(): Promise<string> {
         const checkIfAlreadyExists = (id: string) => this.getAdviceRepository().adviceExists(id);
         return AlmostUniqueShortIdGenerator.obtainUniqueId(checkIfAlreadyExists);
-    }
-
-    private async addAdvice(advice: Advice) {
-        await this.getAdviceRepository().addAdvice(advice);
     }
 }
