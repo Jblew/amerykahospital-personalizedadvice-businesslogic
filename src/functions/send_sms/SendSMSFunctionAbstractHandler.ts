@@ -14,7 +14,6 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
     protected abstract sendSMS(props: { phoneNumber: string; message: string; fromName: string }): Promise<any>;
-    protected abstract obtainAdviceLink(adviceId: string): Promise<string>;
     protected abstract obtainDeepLink(adviceLink: string): Promise<string>;
     protected abstract getSMSConfig(): SMSConfig;
 
@@ -23,14 +22,14 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
         const advice = await this.getAdvice(adviceId);
         await this.assertAdviceNotImportedYet(advice);
 
-        const adviceLink = await this.obtainAdviceLink(advice.id);
+        const adviceLink = this.getAdviceLink(advice.id);
         const deepLink = await this.obtainDeepLink(adviceLink);
         const message = this.generateMessage(advice, deepLink);
-        const fromName = this.getSMSConfig().fromName;
+
         const { sentSMSId } = await this.sendSMSAndRecordState({
             phoneNumber: advice.parentPhoneNumber,
             message,
-            fromName,
+            fromName: this.getSMSConfig().fromName,
         });
 
         return {
@@ -55,6 +54,10 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
         } else {
             throw this.makeAdviceDoesNotExistError({ advanced: `Advice id "${adviceId}"` });
         }
+    }
+
+    private getAdviceLink(adviceId: string): string {
+        return this.getSMSConfig().adviceLink(adviceId);
     }
 
     private generateMessage(advice: Advice, adviceLink: string) {
