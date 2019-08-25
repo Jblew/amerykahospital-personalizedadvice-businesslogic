@@ -9,6 +9,10 @@ export { SentSMS } from "./model/sentsms/SentSMS";
 export { PendingSentSMS } from "./model/sentsms/PendingSentSMS";
 export { SentSMSRepository } from "./model/sentsms/SentSMSRepository";
 
+export { MedicalProfessional } from "./model/medicalprofessional/MedicalProfessional";
+export { PendingMedicalProfessional } from "./model/medicalprofessional/PendingMedicalProfessional";
+export { MedicalProfessionalRepository } from "./model/medicalprofessional/MedicalProfessionalRepository";
+
 /**
  * Roles structure and keys
  */
