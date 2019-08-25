@@ -33,3 +33,8 @@ export {
 export { SendSMSFunction } from "./functions/send_sms/SendSMSFunction";
 export { SendSMSFunctionAbstractHandler } from "./functions/send_sms/SendSMSFunctionAbstractHandler";
 export { SMSConfig } from "./functions/send_sms/SMSConfig";
+
+/**
+ * Misc
+ */
+export { Handler } from "./functions/Handler";
