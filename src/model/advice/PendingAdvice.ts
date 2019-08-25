@@ -5,6 +5,7 @@ export interface PendingAdvice {
     medicalprofessionalName: string;
     parentPhoneNumber: string;
     advice: string;
+    test?: boolean;
 }
 
 export namespace PendingAdvice {
@@ -14,6 +15,7 @@ export namespace PendingAdvice {
         ow(o.patientName, `${prefix}.patientName`, ow.string.nonEmpty);
         ow(o.parentPhoneNumber, `${prefix}.parentPhoneNumber`, ow.string.numeric.length(9));
         ow(o.advice, `${prefix}.advice`, ow.string.nonEmpty);
+        ow(o.test, `${prefix}.test`, ow.optional.boolean);
     }
 
     export type KeysType = { [x in keyof PendingAdvice]: string };
@@ -22,5 +24,6 @@ export namespace PendingAdvice {
         medicalprofessionalName: "medicalprofessionalName",
         parentPhoneNumber: "parentPhoneNumber",
         advice: "advice",
+        test: "test",
     };
 }
