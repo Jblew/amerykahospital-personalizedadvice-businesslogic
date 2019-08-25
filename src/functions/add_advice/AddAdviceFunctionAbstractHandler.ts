@@ -1,15 +1,16 @@
 // tslint:disable member-ordering
 import { Advice } from "../../model/advice/Advice";
+import { AdviceRepository } from "../../model/advice/AdviceRepository";
 import { PendingAdvice } from "../../model/advice/PendingAdvice";
 import { Handler } from "../Handler";
 
 import { AddAdviceFunction as Fn } from "./AddAdviceFunction";
+import { AlmostUniqueShortIdGenerator } from "./AlmostUniqueShortIdGenerator";
 
 export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Function> {
-    protected abstract obtainUniqueId(): Promise<string>;
     protected abstract getTimestampSeconds(): number;
     protected abstract makeInvalidInputDataError(p: { advanced: string }): Error;
-    protected abstract addAdvice(advice: Advice): Promise<void>;
+    protected abstract getAdviceRepository(): AdviceRepository;
 
     public async handle(input: PendingAdvice): Promise<Fn.Result> {
         const pendingAdvice = this.inputToPendingAdvice(input);
@@ -38,5 +39,14 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
             id,
             timestamp: this.getTimestampSeconds(),
         };
+    }
+
+    private async obtainUniqueId(): Promise<string> {
+        const checkIfAlreadyExists = (id: string) => this.getAdviceRepository().adviceExists(id);
+        return AlmostUniqueShortIdGenerator.obtainUniqueId(checkIfAlreadyExists);
+    }
+
+    private async addAdvice(advice: Advice) {
+        await this.getAdviceRepository().addAdvice(advice);
     }
 }
