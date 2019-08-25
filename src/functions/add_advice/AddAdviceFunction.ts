@@ -1,6 +1,6 @@
 import ow from "ow--fork-by-jblew-with-catching";
 
-import { PendingAdvice } from "../model/advice/PendingAdvice";
+import { PendingAdvice } from "../../model/advice/PendingAdvice";
 
 export namespace AddAdviceFunction {
     export type Function = (data: Input, ...args: any[]) => Promise<Result>;
