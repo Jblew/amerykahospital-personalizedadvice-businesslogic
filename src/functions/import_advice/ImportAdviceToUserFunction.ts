@@ -1,6 +1,6 @@
 import ow from "ow--fork-by-jblew-with-catching";
 
-import { Advice } from "../model/advice/Advice";
+import { Advice } from "../../model/advice/Advice";
 
 export namespace ImportAdviceToUserFunction {
     export type Function = (data: Input, ...args: any[]) => Promise<Result>;
