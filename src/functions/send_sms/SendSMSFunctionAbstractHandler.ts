@@ -1,7 +1,10 @@
 // tslint:disable member-ordering
+import ow from "ow--fork-by-jblew-with-catching";
+
 import { Advice } from "../../model/advice/Advice";
 import { AdviceRepository } from "../../model/advice/AdviceRepository";
 import { SentSMSRepository } from "../../model/sentsms/SentSMSRepository";
+import { RoleKey } from "../../roles/RoleKey";
 import { Handler } from "../Handler";
 
 import { SendSMSFunction as Fn } from "./SendSMSFunction";
@@ -11,13 +14,18 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract makeInvalidInputDataError(p: { advanced: string }): Error;
     protected abstract makeAdviceDoesNotExistError(p: { advanced: string }): Error;
     protected abstract makeAdviceAlreadyImportedError(): Error;
+    protected abstract makeMissingRoleError(p: { advanced: string }): Error;
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
     protected abstract sendSMS(props: { phoneNumber: string; message: string; fromName: string }): Promise<any>;
     protected abstract obtainDeepLink(adviceLink: string): Promise<string>;
     protected abstract getSMSConfig(): SMSConfig;
+    protected abstract userHasRole(p: { uid: string; role: string }): Promise<boolean>;
 
-    public async handle(input: { adviceId: string }): Promise<Fn.Result> {
+    public async handle(input: { adviceId: string }, props: { uid: string }): Promise<Fn.Result> {
+        ow(props.uid, "SendSMSFunctionAbstractHandler.props.uid", ow.string.nonEmpty);
+        await this.assertUserIsMedicalProfessional(props.uid);
+
         const adviceId = this.getAdviceIdFromInput(input);
         const advice = await this.getAdvice(adviceId);
         await this.assertAdviceNotImportedYet(advice);
@@ -85,5 +93,13 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
         });
 
         throw caughtError;
+    }
+
+    private async assertUserIsMedicalProfessional(uid: string) {
+        const role = RoleKey.medicalprofessional;
+        const hasMpRole = await this.userHasRole({ uid, role });
+        if (!hasMpRole) {
+            throw this.makeMissingRoleError({ advanced: `Missing role "${role}"` });
+        }
     }
 }
