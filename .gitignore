@@ -3,3 +3,4 @@
 /firestore-debug.log
 /coverage
 /.nyc_output
+.DS_Store
