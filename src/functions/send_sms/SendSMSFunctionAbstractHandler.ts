@@ -17,7 +17,9 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract makeMissingRoleError(p: { role: string }): Error;
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
-    protected abstract sendSMS(props: { phoneNumber: string; message: string; fromName: string }): Promise<any>;
+    protected abstract sendSMS(
+        props: { phoneNumber: string; message: string; fromName: string }
+    ): Promise<string | object>;
     protected abstract obtainDeepLink(adviceLink: string): Promise<string>;
     protected abstract getSMSConfig(): SMSConfig;
     protected abstract userHasRole(p: { uid: string; role: string }): Promise<boolean>;
@@ -78,9 +80,9 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
         fromName: string;
     }): Promise<{ sentSMSId: string }> {
         let caughtError: Error | undefined;
-        let result: any = "";
+        let result: string | object = "";
         try {
-            result = this.sendSMS(props);
+            result = await this.sendSMS(props);
         } catch (error) {
             caughtError = error;
         }
