@@ -17,9 +17,11 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract makeMissingRoleError(p: { role: string }): Error;
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
-    protected abstract sendSMS(
-        props: { phoneNumber: string; message: string; fromName: string },
-    ): Promise<string | object>;
+    protected abstract sendSMS(props: {
+        phoneNumber: string;
+        message: string;
+        fromName: string;
+    }): Promise<string | object>;
     protected abstract obtainDeepLink(adviceLink: string): Promise<string>;
     protected abstract getSMSConfig(): SMSConfig;
     protected abstract userHasRole(p: { uid: string; role: string }): Promise<boolean>;
@@ -87,14 +89,18 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
             caughtError = error;
         }
 
-        await this.getSentSMSRepository().add({
+        const { id } = await this.getSentSMSRepository().add({
             phoneNumber: props.phoneNumber,
             message: props.message,
             result: result || "-",
             ...(caughtError ? { error: caughtError.message } : {}),
         });
 
-        throw caughtError;
+        if (caughtError) {
+            throw caughtError;
+        }
+
+        return { sentSMSId: id };
     }
 
     private async assertUserIsMedicalProfessional(uid: string) {
