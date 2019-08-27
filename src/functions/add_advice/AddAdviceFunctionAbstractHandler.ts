@@ -13,7 +13,7 @@ import { AlmostUniqueShortIdGenerator } from "./AlmostUniqueShortIdGenerator";
 export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Function> {
     protected abstract getTimestampSeconds(): number;
     protected abstract makeInvalidInputDataError(p: { advanced: string }): Error;
-    protected abstract makeMissingRoleError(p: { advanced: string }): Error;
+    protected abstract makeMissingRoleError(p: { role: string }): Error;
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract userHasRole(p: { uid: string; role: string }): Promise<boolean>;
 
@@ -58,7 +58,7 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
         const role = RoleKey.medicalprofessional;
         const hasMpRole = await this.userHasRole({ uid, role });
         if (!hasMpRole) {
-            throw this.makeMissingRoleError({ advanced: `Missing role "${role}"` });
+            throw this.makeMissingRoleError({ role });
         }
     }
 }

@@ -14,7 +14,7 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract makeInvalidInputDataError(p: { advanced: string }): Error;
     protected abstract makeAdviceDoesNotExistError(p: { advanced: string }): Error;
     protected abstract makeAdviceAlreadyImportedError(): Error;
-    protected abstract makeMissingRoleError(p: { advanced: string }): Error;
+    protected abstract makeMissingRoleError(p: { role: string }): Error;
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
     protected abstract sendSMS(props: { phoneNumber: string; message: string; fromName: string }): Promise<any>;
@@ -99,7 +99,7 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
         const role = RoleKey.medicalprofessional;
         const hasMpRole = await this.userHasRole({ uid, role });
         if (!hasMpRole) {
-            throw this.makeMissingRoleError({ advanced: `Missing role "${role}"` });
+            throw this.makeMissingRoleError({ role });
         }
     }
 }
