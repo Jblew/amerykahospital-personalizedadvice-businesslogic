@@ -18,7 +18,7 @@ export abstract class SendSMSFunctionAbstractHandler implements Handler<Fn.Funct
     protected abstract getAdviceRepository(): AdviceRepository;
     protected abstract getSentSMSRepository(): SentSMSRepository;
     protected abstract sendSMS(
-        props: { phoneNumber: string; message: string; fromName: string }
+        props: { phoneNumber: string; message: string; fromName: string },
     ): Promise<string | object>;
     protected abstract obtainDeepLink(adviceLink: string): Promise<string>;
     protected abstract getSMSConfig(): SMSConfig;
