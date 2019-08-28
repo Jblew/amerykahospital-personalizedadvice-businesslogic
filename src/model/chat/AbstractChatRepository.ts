@@ -10,6 +10,14 @@ export abstract class AbstractChatRepository implements ChatRepository {
     public abstract listToChannel(channel: string): Promise<ChatMessage[]>;
     public abstract listToUid(uid: string): Promise<ChatMessage[]>;
     public abstract listUsersWithRole(role: PendingChatUser.Role.Type): Promise<ChatUser[]>;
+    public abstract listenForMessagesToChannel(
+        channel: string,
+        callback: ChatRepository.MessageCallback,
+    ): { cancel: ChatRepository.CancelListeningFn };
+    public abstract listenForMessagesToUid(
+        uid: string,
+        callback: ChatRepository.MessageCallback,
+    ): { cancel: ChatRepository.CancelListeningFn };
 
     public async addMessage(account: Account, pendingMsg: PendingChatMessage): Promise<ChatMessage> {
         const result = await Promise.all([
