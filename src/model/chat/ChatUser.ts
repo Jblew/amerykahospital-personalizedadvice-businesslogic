@@ -6,7 +6,6 @@ import { PendingChatUser } from "./PendingChatUser";
 
 export interface ChatUser extends PendingChatUser {
     id: string;
-    timestamp: number;
 }
 
 export namespace ChatUser {
@@ -16,4 +15,10 @@ export namespace ChatUser {
         PendingChatUser.validate(s, "ChatUser");
         ow(s.id, "ChatUser.id", ow.string.nonEmpty);
     }
+
+    export type KeysType = PendingChatUser.KeysType & { [x in keyof ChatUser]: string };
+    export const keys: KeysType = {
+        ...PendingChatUser.keys,
+        id: "id",
+    };
 }

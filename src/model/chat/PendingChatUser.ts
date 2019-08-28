@@ -29,4 +29,12 @@ export namespace PendingChatUser {
             ow.any(ow.undefined, ow.string.oneOf([Role.MEDICALPROFESSIONAL, Role.SERVICE, Role.UNKNOWN])),
         );
     }
+
+    export type KeysType = { [x in keyof PendingChatUser]: string };
+    export const keys: KeysType = {
+        uid: "uid",
+        displayName: "displayName",
+        lastSeenTimestampS: "lastSeenTimestampS",
+        role: "role",
+    };
 }
