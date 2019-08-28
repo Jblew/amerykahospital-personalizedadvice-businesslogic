@@ -1,4 +1,3 @@
-import ow from "ow--fork-by-jblew-with-catching";
 
 export function forbidUndefinedKeys(obj: object & { [x: string]: any }) {
     for (const key in obj) {
