@@ -15,6 +15,9 @@ export { MedicalProfessionalRepository } from "./model/medicalprofessional/Medic
 
 export { Account } from "./model/account/Account";
 
+export { ChatMessage } from "./model/chat/ChatMessage";
+export { PendingChatMessage } from "./model/chat/PendingChatMessage";
+
 /**
  * Roles structure and keys
  */
