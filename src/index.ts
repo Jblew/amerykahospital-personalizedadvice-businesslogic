@@ -17,6 +17,8 @@ export { Account } from "./model/account/Account";
 
 export { ChatMessage } from "./model/chat/ChatMessage";
 export { PendingChatMessage } from "./model/chat/PendingChatMessage";
+export { ChatUser } from "./model/chat/ChatUser";
+export { PendingChatUser } from "./model/chat/PendingChatUser";
 
 /**
  * Roles structure and keys
