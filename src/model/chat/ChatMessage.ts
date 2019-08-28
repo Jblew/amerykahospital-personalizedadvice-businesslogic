@@ -18,7 +18,7 @@ export namespace ChatMessage {
         ow(s.timestamp, "ChatMessage.timestamp", ow.number.finite.integer.positive);
     }
 
-    export function isValid(s: ChatMessage) {
+    export function isValid(s: any): s is ChatMessage {
         return ow.isValid(s, ow.object.catching(v => validate(v as ChatMessage)));
     }
 

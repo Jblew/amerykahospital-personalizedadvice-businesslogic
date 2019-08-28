@@ -16,7 +16,7 @@ export namespace ChatUser {
         ow(s.id, "ChatUser.id", ow.string.nonEmpty);
     }
 
-    export function isValid(s: ChatUser) {
+    export function isValid(s: any): s is ChatUser {
         return ow.isValid(s, ow.object.catching(v => validate(v as ChatUser)));
     }
 
