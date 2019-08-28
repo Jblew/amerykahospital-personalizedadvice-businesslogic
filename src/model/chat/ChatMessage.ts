@@ -18,6 +18,10 @@ export namespace ChatMessage {
         ow(s.timestamp, "ChatMessage.timestamp", ow.number.finite.integer.positive);
     }
 
+    export function isValid(s: ChatMessage) {
+        return ow.isValid(s, ow.object.catching(v => validate(v as ChatMessage)));
+    }
+
     export type KeysType = PendingChatMessage.KeysType & { [x in keyof ChatMessage]: string };
     export const keys: KeysType = {
         ...PendingChatMessage.keys,
