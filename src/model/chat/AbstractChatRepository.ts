@@ -24,7 +24,7 @@ export abstract class AbstractChatRepository implements ChatRepository {
                 id: account.uid,
                 uid: account.uid,
                 displayName: account.displayName || `user-${account.uid}`,
-                lastSeenTimestampS: this.getTimestampSeconds(),
+                lastSeenTimestampMs: this.getTimestampMs(),
             }),
             this.writeMessage(pendingMsg),
         ]);
@@ -34,5 +34,5 @@ export abstract class AbstractChatRepository implements ChatRepository {
 
     protected abstract writeChatUser(chatUser: ChatUser): Promise<ChatUser>;
     protected abstract writeMessage(pendingMsg: PendingChatMessage): Promise<ChatMessage>;
-    protected abstract getTimestampSeconds(): number;
+    protected abstract getTimestampMs(): number;
 }

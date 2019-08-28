@@ -6,7 +6,7 @@ import { PendingChatMessage } from "./PendingChatMessage";
 
 export interface ChatMessage extends PendingChatMessage {
     id: string;
-    timestamp: number;
+    timestampMs: number;
 }
 
 export namespace ChatMessage {
@@ -15,7 +15,7 @@ export namespace ChatMessage {
         PendingChatMessage.validate(s, "ChatMessage");
 
         ow(s.id, "ChatMessage.id", ow.string.nonEmpty);
-        ow(s.timestamp, "ChatMessage.timestamp", ow.number.finite.integer.positive);
+        ow(s.timestampMs, "ChatMessage.timestampMs", ow.number.finite.integer.positive);
     }
 
     export function isValid(s: any): s is ChatMessage {
@@ -26,6 +26,6 @@ export namespace ChatMessage {
     export const keys: KeysType = {
         ...PendingChatMessage.keys,
         id: "id",
-        timestamp: "timestamp",
+        timestampMs: "timestampMs",
     };
 }

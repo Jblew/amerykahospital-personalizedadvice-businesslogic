@@ -6,7 +6,7 @@ export interface ChatUser {
     id: string;
     uid: string;
     displayName: string;
-    lastSeenTimestampS: number;
+    lastSeenTimestampMs: number;
     role?: ChatUser.Role.Type | undefined;
 }
 
@@ -23,7 +23,7 @@ export namespace ChatUser {
         ow(s, "ChatUser", ow.object.catching(v => forbidUndefinedKeys(v)));
         ow(s.uid, `ChatUser.uid`, ow.string.nonEmpty);
         ow(s.displayName, `ChatUser.displayName`, ow.string.nonEmpty);
-        ow(s.lastSeenTimestampS, `ChatUser.lastSeenTimestampS`, ow.number.integer.finite.positive);
+        ow(s.lastSeenTimestampMs, `ChatUser.lastSeenTimestampMs`, ow.number.integer.finite.positive);
         ow(
             s.role,
             `ChatUser.role`,
@@ -40,7 +40,7 @@ export namespace ChatUser {
     export const keys: KeysType = {
         uid: "uid",
         displayName: "displayName",
-        lastSeenTimestampS: "lastSeenTimestampS",
+        lastSeenTimestampMs: "lastSeenTimestampMs",
         role: "role",
         id: "id",
     };
