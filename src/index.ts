@@ -20,6 +20,7 @@ export { PendingChatMessage } from "./model/chat/PendingChatMessage";
 export { ChatUser } from "./model/chat/ChatUser";
 export { ChatRepository } from "./model/chat/ChatRepository";
 export { AbstractChatRepository } from "./model/chat/AbstractChatRepository";
+export { ChatConfig } from "./model/chat/ChatConfig";
 
 /**
  * Roles structure and keys
