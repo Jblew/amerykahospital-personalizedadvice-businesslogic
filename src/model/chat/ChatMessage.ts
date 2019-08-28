@@ -17,4 +17,11 @@ export namespace ChatMessage {
         ow(s.id, "ChatMessage.id", ow.string.nonEmpty);
         ow(s.timestamp, "ChatMessage.timestamp", ow.number.finite.integer.positive);
     }
+
+    export type KeysType = PendingChatMessage.KeysType & { [x in keyof ChatMessage]: string };
+    export const keys: KeysType = {
+        ...PendingChatMessage.keys,
+        id: "id",
+        timestamp: "timestamp",
+    };
 }

@@ -25,4 +25,13 @@ export namespace PendingChatMessage {
 
         ow(s.message, `${namePrefix}.message`, ow.string.nonEmpty);
     }
+
+    export type KeysType = { [x in keyof PendingChatMessage]: string };
+    export const keys: KeysType = {
+        fromName: "fromName",
+        fromUid: "fromUid",
+        toChannel: "toChannel",
+        toUid: "toUid",
+        message: "message",
+    };
 }
