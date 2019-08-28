@@ -13,6 +13,8 @@ export { MedicalProfessional } from "./model/medicalprofessional/MedicalProfessi
 export { PendingMedicalProfessional } from "./model/medicalprofessional/PendingMedicalProfessional";
 export { MedicalProfessionalRepository } from "./model/medicalprofessional/MedicalProfessionalRepository";
 
+export { Account } from "./model/account/Account";
+
 /**
  * Roles structure and keys
  */
