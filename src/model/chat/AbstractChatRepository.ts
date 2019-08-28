@@ -17,6 +17,7 @@ export abstract class AbstractChatRepository implements ChatRepository {
         uid: string,
         callback: ChatRepository.MessageCallback,
     ): { cancel: ChatRepository.CancelListeningFn };
+    public abstract setUserRole(account: Account, role: ChatUser.Role.Type): Promise<void>;
 
     public async addMessage(account: Account, pendingMsg: PendingChatMessage): Promise<ChatMessage> {
         const result = await Promise.all([

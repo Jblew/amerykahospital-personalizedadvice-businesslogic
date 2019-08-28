@@ -17,6 +17,7 @@ export interface ChatRepository {
         uid: string,
         callback: ChatRepository.MessageCallback,
     ): { cancel: ChatRepository.CancelListeningFn };
+    setUserRole(account: Account, role: ChatUser.Role.Type): Promise<void>;
 }
 
 export namespace ChatRepository {
