@@ -5,7 +5,6 @@ import { PendingMedicalProfessional } from "./PendingMedicalProfessional";
 //
 export interface MedicalProfessional extends PendingMedicalProfessional {
     id: string;
-    timestamp: number;
 }
 
 export namespace MedicalProfessional {
@@ -25,6 +24,5 @@ export namespace MedicalProfessional {
     export const keys: KeysType = {
         ...PendingMedicalProfessional.keys,
         id: "id",
-        timestamp: "timestamp",
     };
 }
