@@ -15,6 +15,10 @@ export namespace PendingMedicalProfessional {
         ow(o.test, `${prefix}.test`, ow.optional.boolean);
     }
 
+    export function isValid(s: any): s is PendingMedicalProfessional {
+        return ow.isValid(s, ow.object.catching(v => validate(v as PendingMedicalProfessional)));
+    }
+
     export type KeysType = { [x in keyof PendingMedicalProfessional]: string };
     export const keys: KeysType = {
         displayName: "displayName",
