@@ -1,5 +1,7 @@
 import ow from "ow--fork-by-jblew-with-catching";
 
+import { forbidUndefinedKeys } from "../../util/forbid-undefined-keys";
+
 import { PendingMedicalProfessional } from "./PendingMedicalProfessional";
 
 //
@@ -9,6 +11,7 @@ export interface MedicalProfessional extends PendingMedicalProfessional {
 
 export namespace MedicalProfessional {
     export function validate(o: MedicalProfessional) {
+        ow(o, "MedicalProfessional", ow.object.catching(v => forbidUndefinedKeys(v)));
         ow(
             o,
             "MedicalProfessional",
