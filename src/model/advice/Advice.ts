@@ -18,6 +18,10 @@ export namespace Advice {
         ow(o.timestamp, "Advice.timestamp", ow.number.finite.integer.greaterThan(0));
     }
 
+    export function isImported(advice: Advice): boolean {
+        return !!advice.uid;
+    }
+
     export type KeysType = PendingAdvice.KeysType & { [x in keyof Advice]: string };
     export const keys: KeysType = {
         ...PendingAdvice.keys,
