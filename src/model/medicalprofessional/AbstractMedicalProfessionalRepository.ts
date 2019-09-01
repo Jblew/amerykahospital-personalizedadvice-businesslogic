@@ -17,9 +17,10 @@ export abstract class AbstractMedicalProfessionalRepository implements MedicalPr
         return mp;
     }
 
-    public async update(mp: MedicalProfessional): Promise<void> {
+    public async update(mp: MedicalProfessional): Promise<MedicalProfessional> {
         MedicalProfessional.validate(mp);
         await this.writeMedicalProfessional(mp);
+        return mp;
     }
 
     protected abstract writeMedicalProfessional(mp: MedicalProfessional): Promise<void>;
