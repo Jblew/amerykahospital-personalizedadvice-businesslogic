@@ -4,11 +4,12 @@
  *
  * Thank you!
  */
-const subtle = window.crypto.subtle;
 const defaultEncoding = "utf-8";
 const hashAlgo = "SHA-512";
 
 export async function browserPbkdf2(passwordStr: string, saltStr: string, iterations: number, length: number) {
+    const subtle = window.crypto.subtle;
+
     const password = Buffer.from(passwordStr, defaultEncoding);
     const salt = Buffer.from(saltStr, defaultEncoding);
 
