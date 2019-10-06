@@ -23,7 +23,7 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
 
         const pendingAdvice = this.inputToPendingAdvice(input);
         const id = await this.obtainUniqueId();
-        const advice = this.pendingAdviceToAdvice(pendingAdvice, id);
+        const advice = this.pendingAdviceToAdvice(pendingAdvice, { id, uid: props.uid });
         await this.getAdviceRepository().addAdvice(advice);
         return {
             log: "",
@@ -41,10 +41,11 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
         return data as PendingAdvice;
     }
 
-    private pendingAdviceToAdvice(pendingAdvice: PendingAdvice, id: string): Advice {
+    private pendingAdviceToAdvice(pendingAdvice: PendingAdvice, props: { id: string; uid: string }): Advice {
         return {
             ...pendingAdvice,
-            id,
+            id: props.id,
+            authorUid: props.uid,
             timestamp: this.getTimestampSeconds(),
         };
     }
