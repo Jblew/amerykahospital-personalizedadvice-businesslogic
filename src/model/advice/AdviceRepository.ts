@@ -11,6 +11,7 @@ export interface AdviceRepository {
 
 export namespace AdviceRepository {
     export interface FetchFilter {
+        authorUid?: string;
         medicalprofessionalName?: string;
         patientName?: string;
         parentPhoneNumber?: string;
@@ -19,6 +20,7 @@ export namespace AdviceRepository {
     export namespace FetchFilter {
         export function validate(f: FetchFilter) {
             ow(f, "FetchFilter", ow.object);
+            ow(f.authorUid, "FetchFilter.authorUid", ow.optional.string.nonEmpty);
             ow(f.medicalprofessionalName, "FetchFilter.medicalprofessionalName", ow.optional.string);
             ow(f.patientName, "FetchFilter.patientName", ow.optional.string);
             ow(f.parentPhoneNumber, "FetchFilter.parentPhoneNumber", ow.optional.string);
