@@ -14,6 +14,7 @@ export namespace AdviceRepository {
         authorUid?: string;
         medicalprofessionalName?: string;
         patientName?: string;
+        evidenceHash?: string;
         parentPhoneNumber?: string;
     }
 
@@ -23,6 +24,7 @@ export namespace AdviceRepository {
             ow(f.authorUid, "FetchFilter.authorUid", ow.optional.string.nonEmpty);
             ow(f.medicalprofessionalName, "FetchFilter.medicalprofessionalName", ow.optional.string);
             ow(f.patientName, "FetchFilter.patientName", ow.optional.string);
+            ow(f.evidenceHash, "FetchFilter.evidenceHash", ow.optional.string);
             ow(f.parentPhoneNumber, "FetchFilter.parentPhoneNumber", ow.optional.string);
         }
     }
