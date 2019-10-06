@@ -50,3 +50,4 @@ export { SMSConfig } from "./functions/send_sms/SMSConfig";
  * Misc
  */
 export { Handler } from "./functions/Handler";
+export { EvidenceHash } from "./EvidenceHash";
