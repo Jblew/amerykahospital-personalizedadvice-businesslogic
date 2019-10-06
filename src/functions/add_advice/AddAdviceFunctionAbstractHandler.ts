@@ -22,6 +22,7 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
         await this.assertUserIsMedicalProfessional(props.uid);
 
         const pendingAdvice = this.inputToPendingAdvice(input);
+        this.assertAdviceHasEvidenceHash(pendingAdvice);
         const id = await this.obtainUniqueId();
         const advice = this.pendingAdviceToAdvice(pendingAdvice, { id, uid: props.uid });
         await this.getAdviceRepository().addAdvice(advice);
@@ -60,6 +61,12 @@ export abstract class AddAdviceFunctionAbstractHandler implements Handler<Fn.Fun
         const hasMpRole = await this.userHasRole({ uid, role });
         if (!hasMpRole) {
             throw this.makeMissingRoleError({ role });
+        }
+    }
+
+    private assertAdviceHasEvidenceHash(advice: PendingAdvice) {
+        if (!advice.evidenceHash) {
+            throw this.makeInvalidInputDataError({ advanced: "Advice must have evidenceHash field" });
         }
     }
 }
