@@ -14,7 +14,7 @@ export namespace PendingAdvice {
     export function validate(o: PendingAdvice, prefix: string = "PendingAdvice") {
         ow(o, `${prefix}`, ow.object);
         ow(o.medicalprofessionalName, `${prefix}.medicalprofessionalName`, ow.string.nonEmpty);
-        ow(o.authorUid, `${prefix}.authorUid`, ow.string.nonEmpty);
+        ow(o.authorUid, `${prefix}.authorUid`, ow.optional.string.nonEmpty);
         ow(o.evidenceHash, `${prefix}.evidenceHash`, ow.optional.string.nonEmpty);
         ow(o.patientName, `${prefix}.patientName`, ow.string.nonEmpty);
         ow(o.parentPhoneNumber, `${prefix}.parentPhoneNumber`, ow.string.numeric.length(9));
