@@ -22,7 +22,7 @@ export namespace PendingAdvice {
         ow(o.test, `${prefix}.test`, ow.optional.boolean);
     }
 
-    export type KeysType = { [x in keyof PendingAdvice]: string };
+    export type KeysType = { [x in keyof Required<PendingAdvice>]: string };
     export const keys: KeysType = {
         patientName: "patientName",
         medicalprofessionalName: "medicalprofessionalName",

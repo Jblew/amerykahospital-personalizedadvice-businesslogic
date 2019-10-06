@@ -22,7 +22,7 @@ export namespace Advice {
         return !!advice.uid;
     }
 
-    export type KeysType = PendingAdvice.KeysType & { [x in keyof Advice]: string };
+    export type KeysType = PendingAdvice.KeysType & { [x in keyof Required<Advice>]: string };
     export const keys: KeysType = {
         ...PendingAdvice.keys,
         id: "id",
