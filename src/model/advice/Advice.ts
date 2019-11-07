@@ -6,6 +6,7 @@ import { PendingAdvice } from "./PendingAdvice";
 export interface Advice extends PendingAdvice {
     id: string;
     uid?: string;
+    thanksCount?: number;
     timestamp: number;
 }
 
@@ -15,6 +16,7 @@ export namespace Advice {
 
         ow(o.id, "Advice.id", ow.string.nonEmpty);
         ow(o.uid, "Advice.uid", ow.any(ow.undefined, ow.string.nonEmpty));
+        ow(o.thanksCount, "Advice.thanksCount", ow.optional.number.finite.integer.greaterThanOrEqual(0));
         ow(o.timestamp, "Advice.timestamp", ow.number.finite.integer.greaterThan(0));
     }
 
@@ -27,6 +29,7 @@ export namespace Advice {
         ...PendingAdvice.keys,
         id: "id",
         uid: "uid",
+        thanksCount: "thanksCount",
         timestamp: "timestamp",
     };
 }
