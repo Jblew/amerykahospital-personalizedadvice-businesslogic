@@ -49,6 +49,9 @@ export { SMSConfig } from "./functions/send_sms/SMSConfig";
 export { HeartbeatFunction } from "./functions/heartbeat/HeartbeatFunction";
 export { HeartbeatFunctionAbstractHandler } from "./functions/heartbeat/HeartbeatFunctionAbstractHandler";
 
+export { ThankFunction } from "./functions/thank/ThankFunction";
+export { ThankFunctionAbstractHandler } from "./functions/thank/ThankFunctionAbstractHandler";
+
 /**
  * Misc
  */
