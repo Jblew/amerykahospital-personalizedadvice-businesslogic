@@ -25,6 +25,7 @@ export { ChatConfig } from "./model/chat/ChatConfig";
 
 export { AdviceComment } from "./model/advice_comment/AdviceComment";
 export { PendingAdviceComment } from "./model/advice_comment/PendingAdviceComment";
+export { AdviceCommentRepository } from "./model/advice_comment/AdviceCommentRepository";
 
 /**
  * Roles structure and keys
