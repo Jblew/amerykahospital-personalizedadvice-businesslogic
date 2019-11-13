@@ -12,9 +12,7 @@ export { SentSMSRepository } from "./model/sentsms/SentSMSRepository";
 export { MedicalProfessional } from "./model/medicalprofessional/MedicalProfessional";
 export { PendingMedicalProfessional } from "./model/medicalprofessional/PendingMedicalProfessional";
 export { MedicalProfessionalRepository } from "./model/medicalprofessional/MedicalProfessionalRepository";
-export {
-    AbstractMedicalProfessionalRepository,
-} from "./model/medicalprofessional/AbstractMedicalProfessionalRepository";
+export { AbstractMedicalProfessionalRepository } from "./model/medicalprofessional/AbstractMedicalProfessionalRepository";
 
 export { Account } from "./model/account/Account";
 
@@ -24,6 +22,9 @@ export { ChatUser } from "./model/chat/ChatUser";
 export { ChatRepository } from "./model/chat/ChatRepository";
 export { AbstractChatRepository } from "./model/chat/AbstractChatRepository";
 export { ChatConfig } from "./model/chat/ChatConfig";
+
+export { AdviceComment } from "./model/advice_comment/AdviceComment";
+export { PendingAdviceComment } from "./model/advice_comment/PendingAdviceComment";
 
 /**
  * Roles structure and keys
@@ -38,9 +39,7 @@ export { AddAdviceFunction } from "./functions/add_advice/AddAdviceFunction";
 export { AddAdviceFunctionAbstractHandler } from "./functions/add_advice/AddAdviceFunctionAbstractHandler";
 
 export { ImportAdviceToUserFunction } from "./functions/import_advice/ImportAdviceToUserFunction";
-export {
-    ImportAdviceToUserFunctionAbstractHandler,
-} from "./functions/import_advice/ImportAdviceToUserFunctionAbstractHandler";
+export { ImportAdviceToUserFunctionAbstractHandler } from "./functions/import_advice/ImportAdviceToUserFunctionAbstractHandler";
 
 export { SendSMSFunction } from "./functions/send_sms/SendSMSFunction";
 export { SendSMSFunctionAbstractHandler } from "./functions/send_sms/SendSMSFunctionAbstractHandler";
@@ -51,6 +50,9 @@ export { HeartbeatFunctionAbstractHandler } from "./functions/heartbeat/Heartbea
 
 export { ThankFunction } from "./functions/thank/ThankFunction";
 export { ThankFunctionAbstractHandler } from "./functions/thank/ThankFunctionAbstractHandler";
+
+export { AddAdviceCommentFunction } from "./functions/add_advice_comment/AddAdviceCommentFunction";
+export { AddAdviceCommentFunctionAbstractHandler } from "./functions/add_advice_comment/AddAdviceCommentFunctionAbstractHandler";
 
 /**
  * Misc
